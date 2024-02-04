@@ -1,0 +1,9 @@
+{
+    "Lua.diagnostics.globals": [
+        "class_commons",
+        "common",
+        "love",
+        "push",
+        "class"
+    ]
+}
