@@ -62,8 +62,8 @@ end
 function love.keypressed(key)
     if key == 'escape' then
         love.event.quit()
-    
-    elseif key == 'enter' or key == 'return' then
+
+    elseif key == 'enter' or key == 'return' or key == 'space' then
         if gameState == "start" then
             gameState = "serve"
 
@@ -71,7 +71,6 @@ function love.keypressed(key)
             gameState = "play"
         elseif gameState == "done" then
             gameState = "serve"
-            
             ball:reset()
 
             -- Score reset
@@ -179,7 +178,7 @@ function love.update(dt)
         if ball:collides(player2) then
             ball.dx = -ball.dx * 1.03
             ball.x = player2.x - 4
-
+    
             -- Randomize velocity (not it's direction)
             if ball.dy < 0 then
                 ball.dy = -math.random(10, 150)
