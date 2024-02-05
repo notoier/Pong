@@ -1,4 +1,4 @@
-# Pong Game [STILL ON DEVELOPMENT -- NOT WORKING]
+# Pong Game
 
 A simple implementation of the classic Pong game using Lua and Love2D engine.
 
