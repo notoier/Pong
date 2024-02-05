@@ -1,11 +1,8 @@
 {
     "Lua.diagnostics.globals": [
-        "class_commons",
-        "common",
-        "love",
-        "push",
-        "class",
-        "player2",
-        "player1"
+        "displayScore",
+        "displayFPS",
+        "smallfont",
+        "love"
     ]
 }
