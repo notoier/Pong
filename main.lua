@@ -1,3 +1,4 @@
+---@diagnostic disable: 111
 push = require 'push'
 
 class = require 'class'
@@ -9,6 +10,8 @@ WINDOW_HEIGHT = 720
 
 VIRTUAL_WIDTH = 432
 VIRTUAL_HEIGHT = 243
+
+PADDLE_SPEED = 200
 
 function  love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
@@ -26,7 +29,12 @@ function  love.load()
             fullscreen = false,
             resizable = false,
             vsync = true
-        }) 
+        })
+
+    -- love.graphics.rectangle(drawMode, screenX, screenY, rectangleX, rectangleY)
+    player1 = Paddle(10, 30, 5, 20)
+    player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30, 5, 20)
+
 end
 
 function love.keypressed(key)
@@ -35,18 +43,39 @@ function love.keypressed(key)
     end
 end
 
+
 function love.draw()
-    push:apply('start')
+    push:start()
     love.graphics.clear(40/255, 45/255, 52/255, 255/255)
 
     love.graphics.printf('Hello Pong!', 0, 20, VIRTUAL_WIDTH, 'center')
 
-    -- love.graphics.rectangle(drawMode, screenX, screenY, rectangleX, rectangleY)
-    left_paddle = Paddle(10, 30, 5, 20)
-    right_paddle = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30, 5, 20)
+    player1:render()
+    player2:render()
 
-    left_paddle:render()
-    right_paddle:render()
+    push:finish()
+end
 
-    push:apply('end')
+function love.update(dt)
+
+    -- player 1 (left)
+    if love.keyboard.isDown('w') then
+        player1.dy = -PADDLE_SPEED
+    elseif love.keyboard.isDown('s') then
+        player1.dy = PADDLE_SPEED
+    else
+        player1.dy = 0
+    end
+
+    -- player 2 (right)
+    if love.keyboard.isDown('up') then
+        player2.dy = -PADDLE_SPEED
+    elseif love.keyboard.isDown('down') then
+        player2.dy = PADDLE_SPEED
+    else
+        player2.dy = 0
+    end
+
+    player1:update(dt)
+    player2:update(dt)
 end

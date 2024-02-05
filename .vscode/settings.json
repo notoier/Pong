@@ -4,6 +4,8 @@
         "common",
         "love",
         "push",
-        "class"
+        "class",
+        "player2",
+        "player1"
     ]
 }
