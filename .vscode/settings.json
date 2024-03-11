@@ -3,6 +3,7 @@
         "displayScore",
         "displayFPS",
         "smallfont",
-        "love"
+        "love",
+        "sounds"
     ]
 }
